@@ -1,0 +1,33 @@
+name: Action
+on:
+  push:
+
+env:
+  filename: "my resume.pdf"
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Hello world action step
+        id: hello
+        uses: ahmedmohab/convert-docx-to-pdf-action
+
+      - name: Compose Containers and Run 
+        run: |
+          docker-compose up --abort-on-container-exit
+      
+      - name: Copy out file from volume
+        run: |
+          cd /var/lib/docker/volumes
+          ls
+          sudo cp /var/lib/docker/volumes/my-cv/_data/$filename /home/
+      
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: /home/$filename
