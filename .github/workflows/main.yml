@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: instructure/libreoffice:6.3
+      options: --user root
     steps:
       - name: Checkout
         uses: actions/checkout@v3
