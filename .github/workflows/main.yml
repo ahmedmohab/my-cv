@@ -1,7 +1,8 @@
 name: Action
 on:
   push:
-
+permissions:
+  contents: write
 env:
   filename: "my resume.pdf"
 
