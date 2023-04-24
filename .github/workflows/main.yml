@@ -15,7 +15,7 @@ jobs:
       
       - name: Hello world action step
         id: hello
-        uses: ahmedmohab/convert-docx-to-pdf-action
+        uses: ahmedmohab/convert-docx-to-pdf-action@master
 
       - name: Compose Containers and Run 
         run: |
