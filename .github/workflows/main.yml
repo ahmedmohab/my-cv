@@ -1,13 +1,15 @@
 name: Action
 on:
   push:
+    branches:
+        - main
 permissions:
   contents: write
 env:
   filename: "my resume.pdf"
 
 jobs:
-  convert:
+  convert-file-and-release:
     runs-on: ubuntu-latest
     container:
       image: instructure/libreoffice:6.3
@@ -16,21 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: convert file
+      - name: Convert file
         id: convert
         run: |
           soffice --convert-to pdf "my resume.docx"
 
-      # - name: Compose Containers and Run 
-      #   run: |
-      #     docker-compose up --abort-on-container-exit
-      
-      # - name: Copy out file from volume
-      #   run: |
-      #     cd /var/lib/docker/volumes
-      #     ls
-      #     sudo cp /var/lib/docker/volumes/my-cv/_data/$filename /home/
-      
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
