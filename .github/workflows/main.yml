@@ -23,6 +23,11 @@ jobs:
         run: |
           soffice --convert-to pdf "my resume.docx"
 
+      - name: Delete Old Release
+        uses: dev-drprasad/delete-older-releases@v0.2
+        with:
+          keep_latest: 0
+          
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
