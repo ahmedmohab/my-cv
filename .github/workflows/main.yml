@@ -22,6 +22,7 @@ jobs:
         id: convert
         run: |
           soffice --convert-to pdf "my resume.docx"
+          mv "my resume.pdf" "ahmed-mohab-resume.pdf"
 
       - name: Delete Old Release
         uses: dev-drprasad/delete-older-releases@v0.2.1
@@ -35,4 +36,4 @@ jobs:
         with:
           token: ${{ github.token }}
           tag_name: latest
-          files: /__w/my-cv/my-cv/my resume.pdf
+          files: /__w/my-cv/my-cv/ahmed-mohab-resume.pdf
