@@ -1,8 +1,7 @@
 name: Action
 on:
   push:
-    branches:
-        - main
+
 permissions:
   contents: write
 env:
@@ -22,18 +21,11 @@ jobs:
         id: convert
         run: |
           soffice --convert-to pdf "my resume.docx"
-          mv "my resume.pdf" "ahmed-mohab-resume.pdf"
-
-      - name: Delete Old Release
-        uses: dev-drprasad/delete-older-releases@v0.2.1
-        with:
-          keep_latest: 0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          mv "my resume.pdf" "mohamed-mohab-resume-${{ github.ref_name }}.pdf"
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ github.token }}
           tag_name: latest
-          files: /__w/my-cv/my-cv/ahmed-mohab-resume.pdf
+          files: /__w/my-cv/my-cv/mohamed-mohab-resume.pdf
