@@ -28,4 +28,4 @@ jobs:
         with:
           token: ${{ github.token }}
           tag_name: latest
-          files: /__w/my-cv/my-cv/mohamed-mohab-resume.pdf
+          files: /__w/my-cv/my-cv/mohamed-mohab-resume-${{ github.ref_name }}.pdf
